@@ -126,21 +126,10 @@ GetoptLong(
   "width_plot=s@", "Width of the plot. Default = 80."
 )
 #
-# global alignment
-#msa_global = "/home/victoria/Escritorio/frustraheatmap/msas/Both.fasta"
-msa_glob = read.fasta(msa_global, forceDNAtolower = F, seqtype = "AA")
-#
-# 2) frustraevo folders 
-#input = Sys.glob("/home/victoria/Escritorio/frustraheatmap/example_data/FrustraEvo_*/pdb/FrustraEvo*") 
-# 3) group names (optional)
-#cluster_names = c("Alpha", "Beta")
+
 if (length(cluster_names) < 1){
   cluster_names = paste('group', seq(1:length(input)), sep = "_")
 }
-
-# 4) max number of positions per row (default 100)
-#width_plot = 80
-## FALTA poner if no hay ná, default = 100
 
 # Get paths to necesary files
 input_dirs = Sys.glob(file.path(input,'*'))
@@ -260,7 +249,7 @@ y.grob <- textGrob("Cluster",
                    gp=gpar(fontface="bold", col="grey20", fontsize=13), rot=90)
 x.grob <- textGrob("Global MSA position", 
                    gp=gpar(fontface="bold", col="grey20", fontsize=13))
-#pp = grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
+
 
 # save figure adjusting for height and width proportionally
 height = length(cluster_names) + length(i) -1
@@ -271,13 +260,3 @@ dev.off()
 
 
 
-# png('frustraheatmap.png', 
-#     res=400,
-#     height = 2000,
-#     width = 6000)
-# grid.arrange(arrangeGrob(p, left = y.grob, bottom = x.grob))
-# dev.off()
-# 
-# 
-# 
-# fwrite(frustic_seqic, "frustic_seqic.txt")
